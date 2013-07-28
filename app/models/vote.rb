@@ -18,24 +18,28 @@ module Vote
 
   def cast_first_vote(direction, username)
     if direction == 'up'
-      self.votes[username] = 1
+      self.votes[username] = { points: 1, time: Time.zone.now }
     elsif direction == 'down'
-      self.votes[username] = -1
+      self.votes[username] = { points: -1, time: Time.zone.now }
     end
   end
 
   def vote_up(username)
-    return if self.votes[username] == 1
-    self.votes[username] = self.votes[username] + 1
+    return if self.votes[username]['points'] == 1
+
+    points = self.votes[username]['points'] + 1
+    self.votes[username] = { points: points, time: Time.zone.now }
   end
 
   def vote_down(username)
-    return if self.votes[username] == -1
-    self.votes[username] = self.votes[username] - 1
+    return if self.votes[username]['points'] == -1
+
+    points = self.votes[username]['points'] - 1
+    self.votes[username] = { points: points, time: Time.zone.now }
   end
 
   def votes_count
-    self.votes.values.sum
+    self.votes.values.each { |vote| vote['points'] }.reduce(:+)
   end
 
   def update_votes_count
