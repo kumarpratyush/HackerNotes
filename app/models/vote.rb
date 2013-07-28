@@ -39,7 +39,8 @@ module Vote
   end
 
   def votes_count
-    self.votes.values.each { |vote| vote['points'] }.reduce(:+)
+    vote_values = self.votes.values
+    vote_values.map { |vote| vote['points'] }.reduce(:+)
   end
 
   def update_votes_count
