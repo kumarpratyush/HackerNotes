@@ -10,7 +10,7 @@
         = link_to(truncate(r.title, length: 50).html_safe, r.url)
         %span.voteContainer.hidden
           = link_to_vote(r, :up)
-          %span= r.votes_count
+          %span= r.votes_counter
           = link_to_vote(r, :down)
         %span
           = link_to_remove_if_power_user(r, @repo)
