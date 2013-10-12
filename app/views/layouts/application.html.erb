@@ -5,6 +5,7 @@
   <meta name="Description" content="<%= yield(:page_description) %>">
   <meta name="Keyword" content="<%= yield(:page_keywords) %>">
   <%= favicon_link_tag "favicon.ico" %>
+  <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/acphikopigkpfbkonnacihkhcefdeagg">
 
   <title><%= [yield(:page_title), "Hacker Notes"].reject(&:blank?).join(' - ') %></title>
   <%= render "shared/analytics" unless Rails.env.development? %>
